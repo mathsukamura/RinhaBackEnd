@@ -5,11 +5,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 var config = typeof(IConfiguration);
 
+var dbHostname = Environment.GetEnvironmentVariable("DB_HOSTNAME") ?? "localhost";
+
+var connectionString = builder.Configuration.GetConnectionString("Default");
+
 builder.Services.AddDbContext<DbContextCfg>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
+    options.UseNpgsql(connectionString?.Replace("{server}", dbHostname));
 });
-
 
 builder.Services.AddControllersWithViews();
 
