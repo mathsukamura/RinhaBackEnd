@@ -8,6 +8,8 @@ public class ClientEntityTypeConfiguration : IEntityTypeConfiguration<Cliente>
 {
     public void Configure(EntityTypeBuilder<Cliente> builder)
     {
+        builder.ToTable("cliente");
+        
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Limite)

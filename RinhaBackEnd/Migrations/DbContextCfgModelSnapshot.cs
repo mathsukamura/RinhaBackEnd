@@ -47,7 +47,7 @@ namespace RinhaBackEnd.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cliente");
+                    b.ToTable("cliente", (string)null);
 
                     b.HasData(
                         new
@@ -117,7 +117,7 @@ namespace RinhaBackEnd.Migrations
 
                     b.HasIndex("IdCliente");
 
-                    b.ToTable("Transacao");
+                    b.ToTable("transacao", (string)null);
                 });
 
             modelBuilder.Entity("RinhaBackEnd.Models.Client.Transacao", b =>

@@ -15,7 +15,7 @@ namespace RinhaBackEnd.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Cliente",
+                name: "cliente",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
@@ -26,11 +26,11 @@ namespace RinhaBackEnd.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cliente", x => x.id);
+                    table.PrimaryKey("PK_cliente", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Transacao",
+                name: "transacao",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
@@ -43,17 +43,17 @@ namespace RinhaBackEnd.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Transacao", x => x.id);
+                    table.PrimaryKey("PK_transacao", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Transacao_Cliente_id_cliente",
+                        name: "FK_transacao_cliente_id_cliente",
                         column: x => x.id_cliente,
-                        principalTable: "Cliente",
+                        principalTable: "cliente",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "Cliente",
+                table: "cliente",
                 columns: new[] { "id", "limite", "saldo" },
                 values: new object[,]
                 {
@@ -65,8 +65,8 @@ namespace RinhaBackEnd.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transacao_id_cliente",
-                table: "Transacao",
+                name: "IX_transacao_id_cliente",
+                table: "transacao",
                 column: "id_cliente");
         }
 
@@ -74,10 +74,10 @@ namespace RinhaBackEnd.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Transacao");
+                name: "transacao");
 
             migrationBuilder.DropTable(
-                name: "Cliente");
+                name: "cliente");
         }
     }
 }
