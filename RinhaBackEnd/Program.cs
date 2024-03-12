@@ -1,17 +1,12 @@
 using Microsoft.EntityFrameworkCore;
+using RinhaBackEnd;
 using RinhaBackEnd.Infra.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var config = typeof(IConfiguration);
-
-var dbHostname = Environment.GetEnvironmentVariable("DB_HOSTNAME") ?? "localhost";
-
-var connectionString = builder.Configuration.GetConnectionString("Default");
-
 builder.Services.AddDbContext<DbContextCfg>(options =>
 {
-    options.UseNpgsql(connectionString?.Replace("{server}", dbHostname));
+    options.UseNpgsql(ConfigConnectionString.Config(builder));
 });
 
 builder.Services.AddControllersWithViews();
